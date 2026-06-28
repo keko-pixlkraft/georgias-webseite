@@ -3,6 +3,7 @@
 .git-stale/
 .git-test/
 .repo-git/
+.git-blocked-old/
 
 final-check-*.png
 final-finish-*.png
