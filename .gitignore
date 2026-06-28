@@ -1,0 +1,23 @@
+.agents/
+.brave-debug/
+.git-stale/
+.git-test/
+.repo-git/
+
+final-check-*.png
+final-finish-*.png
+hero-desktop*.png
+logo-*-top.png
+logo-header-check.png
+logo-fix-*.png
+
+logo-concepts.html
+logo-option-*.svg
+
+georgia-cutout-final.png
+georgia-cutout-v2.png
+georgia-cutout-v3.svg
+georgia-cutout-v4.png
+georgia-portrait.jpg
+
+WhatsApp Image*.jpeg

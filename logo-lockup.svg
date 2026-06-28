@@ -1,0 +1,30 @@
+<svg width="980" height="168" viewBox="0 0 980 168" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g transform="translate(0 8)">
+    <path
+      d="M67.5 25C62.9 20.3 56.4 17.5 49.2 17.5C33.8 17.5 21.3 30.1 21.3 45.7C21.3 61.3 33.8 73.9 49.2 73.9C57.2 73.9 64.5 70.5 69.6 64.8"
+      stroke="#AF6F67"
+      stroke-width="5.5"
+      stroke-linecap="round"
+    />
+    <path
+      d="M47.7 31.6H56.7C63.7 31.6 68.2 35.7 68.2 42.1C68.2 47.9 64.4 51.7 58 52.3L68.7 63.5"
+      stroke="#C9A663"
+      stroke-width="3.4"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <path
+      d="M47.7 31.6V63.5"
+      stroke="#C9A663"
+      stroke-width="3.4"
+      stroke-linecap="round"
+    />
+    <path
+      d="M71.4 16L74.2 21.7L79.9 24.5L74.2 27.3L71.4 33L68.6 27.3L62.9 24.5L68.6 21.7L71.4 16Z"
+      fill="#AF6F67"
+    />
+    <circle cx="24.8" cy="67.7" r="2.6" fill="#C48B84"/>
+  </g>
+  <text x="124" y="74" fill="#8E7A74" font-family="'Manrope', sans-serif" font-size="16" letter-spacing="5.1">ENERGY HEALING . COACHING</text>
+  <text x="122" y="133" fill="#AF6F67" font-family="'Cormorant Garamond', Georgia, serif" font-size="86" letter-spacing="-3.2">Georgia Reid</text>
+</svg>
