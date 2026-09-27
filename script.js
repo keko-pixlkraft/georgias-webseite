@@ -1,54 +1,36 @@
-const CONTACT = {
-  email: "georgiareid25@gmail.com"
-};
+const form = document.querySelector('#contact-form');
+const service = document.querySelector('#service');
+const selectedSession = document.querySelector('#selected-session');
+const status = document.querySelector('#form-status');
 
-const form = document.querySelector("#contact-form");
-const serviceSelect = document.querySelector("#service");
-const status = document.querySelector("#form-status");
-
-document.querySelector("#year").textContent = new Date().getFullYear();
-
-document.querySelectorAll(".session-card").forEach((card) => {
-  card.addEventListener("click", (event) => {
-    if (!event.target.closest("button")) return;
-    serviceSelect.value = card.dataset.service;
-    document.querySelector("#request").scrollIntoView({ behavior: "smooth", block: "start" });
-    window.setTimeout(() => serviceSelect.focus({ preventScroll: true }), 650);
+document.querySelectorAll('.select-session').forEach((button) => {
+  button.addEventListener('click', () => {
+    const session = button.closest('[data-session]').dataset.session;
+    service.value = session;
+    selectedSession.textContent = `Selected: ${session}`;
+    selectedSession.classList.add('is-visible');
+    document.querySelector('#request').scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 });
 
-if (form) {
-  form.addEventListener("submit", (event) => {
-    event.preventDefault();
-    if (!form.checkValidity()) {
-      form.classList.add("is-invalid");
-      status.textContent = "Please complete the highlighted fields.";
-      return;
-    }
-
-    const values = Object.fromEntries(new FormData(form).entries());
-    const subject = `Private session request: ${values.service}`;
-    const body = [
-      `Name: ${values.name}`,
-      `Email: ${values.email}`,
-      `Session: ${values.service}`,
-      "",
-      values.message
-    ].join("\n");
-
-    window.location.href = `mailto:${CONTACT.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    status.textContent = "Your email app should open with your private request ready to send.";
-    form.classList.remove("is-invalid");
-  });
-}
+form.addEventListener('submit', (event) => {
+  event.preventDefault();
+  if (!form.checkValidity()) {
+    form.classList.add('is-invalid');
+    form.reportValidity();
+    return;
+  }
+  const name = document.querySelector('#name').value.trim();
+  const email = document.querySelector('#email').value.trim();
+  const message = document.querySelector('#message').value.trim();
+  const subject = encodeURIComponent(`Private session request — ${service.value}`);
+  const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nSession: ${service.value}\n\nWhat I would like support with:\n${message}`);
+  window.location.href = `mailto:georgiareid25@gmail.com?subject=${subject}&body=${body}`;
+  status.textContent = 'Your email app is opening with your private request.';
+});
 
 const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (!entry.isIntersecting) return;
-    const delay = Number(entry.target.dataset.delay || 0);
-    window.setTimeout(() => entry.target.classList.add("is-visible"), delay);
-    observer.unobserve(entry.target);
-  });
-}, { threshold: 0.12 });
-
-document.querySelectorAll(".reveal").forEach((element) => observer.observe(element));
+  entries.forEach((entry) => { if (entry.isIntersecting) entry.target.classList.add('is-visible'); });
+}, { threshold: 0.13 });
+document.querySelectorAll('.reveal').forEach((element) => observer.observe(element));
+document.querySelector('#year').textContent = new Date().getFullYear();
