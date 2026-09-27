@@ -26,3 +26,5 @@ WhatsApp Image*.jpeg
 
 .vercel
 .env*
+.deploy_key
+.deploy_key.pub
