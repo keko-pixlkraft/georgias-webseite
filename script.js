@@ -1,3 +1,5 @@
+document.documentElement.classList.add('has-js');
+
 const form = document.querySelector('#contact-form');
 const service = document.querySelector('#service');
 const selectedSession = document.querySelector('#selected-session');
