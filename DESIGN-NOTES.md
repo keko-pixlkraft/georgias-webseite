@@ -12,6 +12,8 @@ Final generation prompt:
 
 ## Checks
 
+Follow-up: Intuitive Tarot is €111 in its card, scene and enquiry preset. Removed the floating CSS seals, orbit lines, spheres and drift animation across Hero, Sessions, Private Experiences and Enquiry. Scenic imagery supplies the material depth. Mobile review uses `responsive-check.html` at 360, 390, 430 and 768 CSS pixels. Corrected the mobile price row to span both card columns and added a readable glass header over the hero photograph.
+
 Run `node --test tests/site.test.cjs`, `node --check script.js` and `git diff --check`.
 
 The enquiry form opens the visitor's email app; it does not claim successful delivery. WhatsApp opens a direct conversation. No enquiry is sent during QA. Energy/intuitive work is labelled complementary wellbeing support; SOS coaching calls are not emergency care.

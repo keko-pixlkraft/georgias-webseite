@@ -30,7 +30,7 @@
       const overflow = Math.max(doc.documentElement.scrollWidth, doc.body.scrollWidth) > frameWidth;
       const failed = [...doc.images].filter(i => i.complete && i.naturalWidth === 0).length;
       const floating = doc.querySelectorAll('.depth-sculpture,.material-orbit,.celestial-seal').length;
-      result.textContent = `${frameWidth}px viewport · Horizontal overflow: ${overflow ? 'YES' : 'none'} · Failed images: ${failed} · Floating orbit decorations: ${floating}`;
+      result.textContent = `${preview.contentWindow.innerWidth}px CSS viewport (${frameWidth}px content) · Horizontal overflow: ${overflow ? 'YES' : 'none'} · Failed images: ${failed} · Floating orbit decorations: ${floating}`;
     });
   </script>
 </body>
