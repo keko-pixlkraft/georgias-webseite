@@ -11,15 +11,21 @@ test('all nine bookable choices use the new prices', () => {
   const expected = [
     'Energy Healing — 60 minutes — €333', 'Energy Healing — 90 minutes — €444',
     'Mindset Strategy — 60 minutes — €333', 'The Alignment Session — 90 minutes — €444',
-    'Manifestation & Self-Concept — 75 minutes — €444', 'Intuitive Tarot — 60 minutes — €333',
+    'Manifestation & Self-Concept — 75 minutes — €444', 'Intuitive Tarot — 60 minutes — €111',
     'The Alignment Journey — 4 sessions — €1,333', 'The Georgia Edit — 8 sessions — €2,222',
     'Private 1:1 Mentorship — 12 weeks — €3,333'
   ];
   assert.deepEqual(options.filter(s => s.includes('€')), expected);
   assert.doesNotMatch(html, /€(?:330|450|335|490|410|225|1,200|2,400|3,750)\b/);
+  assert.doesNotMatch(html, /Intuitive Tarot[^"<\n]*€333/);
   for (const m of html.matchAll(/data-(?:session|preset|choice)="([^"]+)"/g)) {
     assert.ok(options.includes(decode(m[1])), `Unmatched selection: ${m[1]}`);
   }
+});
+
+test('decorative orbit overlays are removed from markup and styles', () => {
+  const css = fs.readFileSync(path.join(root, 'styles.css'), 'utf8');
+  assert.doesNotMatch(html + css, /celestial-seal|material-orbit|depth-sculpture|celestial-drift|request-backdrop:after/);
 });
 
 test('focus tiles contain only the numbered four labels', () => {
