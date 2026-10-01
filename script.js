@@ -10,15 +10,21 @@ window.addEventListener('scroll', setHeaderState, { passive: true });
 
 const chooseSession = (session) => {
   const option = [...service.options].find((item) => item.textContent === session);
-  if (option) service.value = option.value;
+  if (!option) return;
+  service.value = option.value;
   selectedSession.textContent = `Selected experience: ${session}`;
   selectedSession.classList.add('is-visible');
   document.querySelector('#request').scrollIntoView({ behavior: 'smooth', block: 'start' });
 };
 
+service.addEventListener('change', () => {
+  selectedSession.textContent = service.value ? `Selected experience: ${service.value}` : 'No experience selected yet';
+  selectedSession.classList.toggle('is-visible', Boolean(service.value));
+});
+
 document.querySelectorAll('.select-session').forEach((button) => {
   button.addEventListener('click', () => {
-    chooseSession(button.closest('[data-session]').dataset.session);
+    chooseSession(button.dataset.choice || button.closest('[data-session]').dataset.session);
   });
 });
 
