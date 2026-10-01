@@ -55,10 +55,6 @@ nav a:hover:after{transform:scaleX(1);transform-origin:left}
 .hero-actions{display:flex;align-items:center;gap:1.5rem}
 .hero-signature{position:absolute;z-index:2;left:var(--pad);bottom:2rem;display:flex;align-items:center;gap:1rem;color:#5d5144;font-size:.58rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase}
 .hero-signature i{display:block;width:2.2rem;height:1px;background:rgba(77,59,37,.35)}
-.celestial-seal{position:absolute;z-index:2;right:var(--pad);bottom:2rem;width:8rem;height:8rem;border:1px solid rgba(79,51,24,.26);border-radius:50%;transform:rotateX(63deg) rotateZ(18deg);transform-style:preserve-3d;perspective:600px}
-.celestial-seal i{position:absolute;inset:14%;border:1px solid rgba(79,51,24,.34);border-radius:50%;transform:rotateY(62deg)}
-.celestial-seal i:nth-child(2){transform:rotateY(-62deg)}
-.celestial-seal b{position:absolute;top:50%;left:50%;width:.65rem;height:.65rem;border-radius:50%;background:var(--bronze);box-shadow:0 0 1.2rem rgba(197,150,84,.8);transform:translate(-50%,-50%) translateZ(20px)}
 
 .threshold{min-height:36rem}
 .threshold .scene-image{object-position:center}
@@ -117,10 +113,6 @@ nav a:hover:after{transform:scaleX(1);transform-origin:left}
 .select-session{display:inline-flex;align-items:center;gap:.55rem;padding:.5rem 0;border:0;border-bottom:1px solid rgba(50,37,23,.6);background:transparent;color:var(--ink);font-size:.65rem;font-weight:600;white-space:nowrap}
 .select-session span{transition:transform .22s var(--ease)}
 .select-session:hover span{transform:translate(3px,-3px)}
-.material-orbit{position:absolute;z-index:-1;top:5rem;right:-9rem;width:28rem;height:28rem;border:1px solid rgba(133,89,39,.18);border-radius:50%;transform:perspective(900px) rotateX(68deg) rotateZ(18deg);transform-style:preserve-3d}
-.material-orbit i{position:absolute;inset:9%;border:1px solid rgba(133,89,39,.22);border-radius:50%;transform:rotateY(64deg)}
-.material-orbit i:nth-child(2){transform:rotateY(-64deg)}
-.material-orbit b{position:absolute;top:50%;left:50%;width:3.4rem;height:3.4rem;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff9e9,#d8bb89 32%,#966932 80%);box-shadow:0 1rem 4rem rgba(133,89,39,.25);transform:translate(-50%,-50%) translateZ(75px)}
 
 .alignment-scene{min-height:43rem}
 .alignment-scene .scene-image{object-position:center}
@@ -153,12 +145,6 @@ nav a:hover:after{transform:scaleX(1);transform-origin:left}
 .journey>div>p:not(:first-child){color:#51483d;font-size:.86rem;line-height:1.7}
 .service-main .session-lead{color:#382f25!important;font-weight:500}
 .journey .select-session{border-color:rgba(79,55,29,.5);color:var(--ink)}
-.depth-sculpture{position:absolute;z-index:-1;right:-8rem;bottom:-10rem;width:35rem;height:35rem;border:1px solid rgba(211,172,111,.18);border-radius:50%;transform:perspective(900px) rotateX(67deg) rotateZ(-28deg);transform-style:preserve-3d}
-.depth-sculpture i{position:absolute;border:1px solid rgba(114,76,34,.26);border-radius:50%}
-.depth-sculpture i:nth-child(1){inset:7%;transform:rotateY(64deg) translateZ(30px)}
-.depth-sculpture i:nth-child(2){inset:15%;transform:rotateY(-64deg) translateZ(55px)}
-.depth-sculpture i:nth-child(3){inset:24%;transform:rotateX(60deg) translateZ(90px)}
-.depth-sculpture b{position:absolute;top:50%;left:50%;width:5.5rem;height:5.5rem;border-radius:50%;background:radial-gradient(circle at 38% 32%,#fff8e7,#d2a86a 45%,#72502e 88%);box-shadow:0 0 4rem rgba(134,87,37,.24);transform:translate(-50%,-50%) translateZ(100px)}
 
 .tarot-scene{min-height:43rem}
 .tarot-scene .scene-image{object-position:center}
@@ -190,7 +176,6 @@ blockquote{max-width:31rem;margin:2.2rem 0 0;padding:1.4rem 0 0 1.4rem;border-to
 
 .request-section{position:relative;isolation:isolate;display:grid;grid-template-columns:.82fr 1fr;gap:clamp(4rem,9vw,9rem);padding:clamp(6.5rem,9vw,9rem) var(--pad);overflow:hidden;background:#eee0ca}
 .request-backdrop{position:absolute;z-index:-2;inset:0;background:linear-gradient(90deg,rgba(244,232,214,.97),rgba(244,232,214,.72)),url("assets/vision/celestial-threshold-light-v1.webp") center/cover}
-.request-backdrop:after{position:absolute;right:-8rem;bottom:-14rem;width:38rem;height:38rem;border:1px solid rgba(128,84,35,.17);border-radius:50%;content:"";box-shadow:inset 0 0 0 3rem rgba(255,255,255,.08),inset 0 0 0 6rem rgba(128,84,35,.04)}
 .request-intro h2{margin-bottom:1.4rem}
 .request-intro>p:not(.eyebrow){max-width:30rem;color:var(--muted);font-size:.92rem;line-height:1.78}
 .direct-contact{display:grid;gap:.85rem;margin-top:2.4rem}
@@ -214,8 +199,6 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 .reveal{opacity:1;transform:none}
 .reveal.is-entering{animation:soft-arrival .8s var(--ease) both}
 @keyframes soft-arrival{from{opacity:.28;transform:translateY(18px)}to{opacity:1;transform:none}}
-@keyframes celestial-drift{from{transform:perspective(900px) rotateX(67deg) rotateZ(-28deg) translate3d(0,0,0)}to{transform:perspective(900px) rotateX(61deg) rotateZ(-20deg) translate3d(-1.2rem,-.7rem,0)}}
-.depth-sculpture{animation:celestial-drift 16s ease-in-out infinite alternate}
 
 @media(max-width:1000px){
   .site-header{grid-template-columns:1fr auto}nav{display:none}
@@ -234,7 +217,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
   :root{--pad:1.15rem}
   .site-header{left:1.15rem;right:1.15rem;min-height:5.1rem}.site-header.is-scrolled{top:.4rem}.wordmark span{display:none}.wordmark strong{font-size:1.4rem}.header-cta{padding:.6rem .65rem;font-size:.61rem}
   .hero{min-height:51rem}.hero .scene-image{object-position:64% center}.hero-wash{background:linear-gradient(180deg,rgba(246,229,204,.02) 0%,rgba(246,229,204,.12) 34%,rgba(246,229,204,.9) 59%,#ead4b3 100%)}
-  .hero-copy{width:calc(100% - 2.3rem);margin-left:1.15rem;padding:25rem 0 5.4rem}.hero h1{max-width:10ch;margin-bottom:1.1rem;font-size:clamp(3.55rem,15vw,4.8rem)}.hero .lede{font-size:.88rem;line-height:1.65}.hero-actions{align-items:flex-start;flex-direction:column;gap:1rem}.hero-signature{right:1.15rem;bottom:1.2rem;left:1.15rem;gap:.55rem}.hero-signature i{flex:1;width:auto}.celestial-seal{display:none}
+  .hero-copy{width:calc(100% - 2.3rem);margin-left:1.15rem;padding:25rem 0 5.4rem}.hero h1{max-width:10ch;margin-bottom:1.1rem;font-size:clamp(3.55rem,15vw,4.8rem)}.hero .lede{font-size:.88rem;line-height:1.65}.hero-actions{align-items:flex-start;flex-direction:column;gap:1rem}.hero-signature{right:1.15rem;bottom:1.2rem;left:1.15rem;gap:.55rem}.hero-signature i{flex:1;width:auto}
   .threshold{min-height:40rem}.threshold .scene-image{object-position:68% center}.threshold-shade{background:linear-gradient(180deg,rgba(246,232,210,.06),rgba(246,232,210,.18) 30%,rgba(246,232,210,.92) 52%,#efe1cd 100%)}.threshold-copy{width:100%;margin:0;padding:19rem 1.15rem 3rem}.threshold-copy h2{font-size:clamp(2.7rem,10vw,3.5rem)}
   .focus-gallery{padding:2.5rem 1.15rem 3rem}.focus-intro{align-items:flex-start;flex-direction:column;gap:1rem}.focus-grid{display:flex;gap:.7rem;margin-right:-1.15rem;overflow-x:auto;padding:0 1.15rem 1.2rem 0;scroll-snap-type:x mandatory;scrollbar-width:none}.focus-grid::-webkit-scrollbar{display:none}.focus-card{flex:0 0 70vw;min-height:22rem;scroll-snap-align:start}.focus-card h3{font-size:2rem}.focus-card p{font-size:.7rem}
   .sessions-section{padding:5rem 1.15rem}.section-heading{margin-bottom:2.5rem}.section-heading h2,.experience-intro h2,.experience-heading h2,.request-intro h2{font-size:clamp(3.2rem,13vw,4.45rem)}
@@ -247,4 +230,4 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
   .request-section{padding:5rem 1.15rem}.request-form{padding:1.25rem}.direct-contact a{max-width:100%;font-size:.68rem}.site-footer{align-items:flex-start;flex-direction:column;min-height:0;padding:3rem 1.15rem}
 }
 
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal.is-entering,.depth-sculpture{animation:none}.button,.select-session span,.focus-card,.focus-card img,.service,.service-art img,.journey{transition:none}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal.is-entering{animation:none}.button,.select-session span,.focus-card,.focus-card img,.service,.service-art img,.journey{transition:none}}

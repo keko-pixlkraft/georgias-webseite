@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Georgia — responsive layout review</title>
+  <style>
+    *{box-sizing:border-box}body{margin:0;padding:1.5rem;background:#ece7de;color:#29271f;font:14px system-ui,sans-serif}header{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:1rem;margin:0 auto 1.5rem}label{display:flex;gap:.5rem;align-items:center}select,button{font:inherit;padding:.5rem;border:1px solid #938a7c;background:#fffaf2;color:inherit}main{display:grid;justify-content:center;gap:1rem}iframe{display:block;width:390px;height:780px;border:0;background:#f7f1e7;box-shadow:0 12px 50px #4d412e25}output{display:block;text-align:center;max-width:780px;font-size:12px}a{color:inherit}
+  </style>
+</head>
+<body>
+  <header>
+    <label>Viewport <select id="width"><option value="360">360 px</option><option value="390" selected>390 px</option><option value="430">430 px</option><option value="768">768 px</option></select></label>
+    <label>Section <select id="section"><option value="#top">Hero</option><option value="#threshold-title">Introduction</option><option value="#sessions">Sessions</option><option value="#private-experiences">Private experiences</option><option value="#tarot-title">Tarot</option><option value="#experience">Appointment</option><option value="#georgia">Georgia</option><option value="#request">Enquiry</option></select></label>
+    <button id="inspect" type="button">Check layout</button>
+    <a href="/">Open live website</a>
+  </header>
+  <main><iframe id="preview" src="/index.html" title="Georgia responsive website"></iframe><output id="result">Select a width and section, then check the layout.</output></main>
+  <script>
+    const preview = document.querySelector('#preview');
+    const width = document.querySelector('#width');
+    const section = document.querySelector('#section');
+    const result = document.querySelector('#result');
+    width.addEventListener('change', () => { preview.style.width = `${width.value}px`; result.textContent = 'Viewport updated. Check layout when ready.'; });
+    section.addEventListener('change', () => { preview.src = `/index.html${section.value}`; result.textContent = 'Section loading.'; });
+    document.querySelector('#inspect').addEventListener('click', () => {
+      const doc = preview.contentDocument;
+      const frameWidth = doc.documentElement.clientWidth;
+      const overflow = Math.max(doc.documentElement.scrollWidth, doc.body.scrollWidth) > frameWidth;
+      const failed = [...doc.images].filter(i => i.complete && i.naturalWidth === 0).length;
+      const floating = doc.querySelectorAll('.depth-sculpture,.material-orbit,.celestial-seal').length;
+      result.textContent = `${frameWidth}px viewport · Horizontal overflow: ${overflow ? 'YES' : 'none'} · Failed images: ${failed} · Floating orbit decorations: ${floating}`;
+    });
+  </script>
+</body>
+</html>
