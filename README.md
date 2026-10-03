@@ -1,7 +1,15 @@
-# Georgia Reid Website
+# Align with Georgia
 
-Premium landing page for Georgia Reid, focused on energy healing, mindset coaching, and private sessions in Glasgow and online.
+Private energy healing, mindset strategy, tarot and alignment experiences on the Costa del Sol and online worldwide.
+
+Live: https://www.alignwithgeorgia.online/
+
+Static HTML/CSS/JavaScript on Vercel. The direct enquiry function is prepared but disabled until the verified sender, server credentials and abuse protection are configured. See ENQUIRY-SETUP.md for the activation checklist.
 
 ## Local preview
 
-Open `index.html` in a browser.
+Serve the project root with a static web server. Open responsive-check.html to inspect the live CSS at narrow viewport widths.
+
+## Checks
+
+`node --test tests/*.test.cjs`
