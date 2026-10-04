@@ -23,6 +23,8 @@ test('success is only shown after provider acceptance and duplicate clicks are i
   resolve({ ok: true, json: async () => ({ accepted: true }) });
   await pending;
   assert.equal(ui.status.dataset.state, 'success');
+  assert.match(ui.status.textContent, /reply by email to confirm your appointment/);
+  assert.match(ui.status.textContent, /PayPal payment link or bank transfer details/);
   assert.equal(ui.button.disabled, false);
   assert.equal(ui.button.innerHTML, 'Send enquiry');
   assert.equal(ui.resets, 1);

@@ -58,6 +58,8 @@ test('enquiry delivery safeguards and failure handling (no real emails)', async 
     assert.ok(sent.text.includes(`Preferred date: ${nextYear}-10-05`));
     assert.ok(sent.html.includes('Preferred time: 14:30'));
     assert.ok(sent.html.includes('Time zone: Europe/Madrid'));
+    assert.ok(sent.text.includes('Reply to confirm the date, time and meeting details'));
+    assert.ok(sent.html.includes('PayPal payment link or bank transfer details'));
     global.fetch = async () => ({ ok: false, json: async () => ({ error: 'rejected' }) });
     assert.equal((await invoke()).code, 502);
     global.fetch = async () => { throw new Error('timeout'); };
