@@ -33,6 +33,11 @@ test('enquiry delivery safeguards and failure handling (no real emails)', async 
     }
     assert.equal(calls, 0);
     let sent;
+    const nextYear = new Date().getUTCFullYear() + 1;
+    for (const fields of [{ format: 'Invented' }, { preferredDate: '2000-01-01' }, { preferredDate: `${nextYear}-02-30` }, { preferredDate: ['invalid'] }, { preferredTime: '12:30' }, { preferredDate: `${nextYear}-10-05`, preferredTime: '24:00' }, { preferredDate: 'too-long-date-input' }, { timezone: 'Fake/Timezone' }]) {
+      assert.equal((await invoke({ ...valid, ...fields })).code, 400);
+    }
+    assert.equal(calls, 0);
     global.fetch = async (url, options) => {
       calls++; sent = JSON.parse(options.body);
       assert.equal(url, 'https://api.resend.com/emails');
@@ -47,6 +52,12 @@ test('enquiry delivery safeguards and failure handling (no real emails)', async 
     await invoke({ ...valid, name: '<img src=x onerror=alert(1)>', message: '<script>bad</script>' });
     assert.ok(sent.html.includes('&lt;script&gt;bad&lt;/script&gt;'));
     assert.ok(!sent.html.includes('<img'));
+    const appointment = await invoke({ ...valid, format: 'In person', preferredDate: `${nextYear}-10-05`, preferredTime: '14:30', timezone: 'Europe/Madrid' });
+    assert.equal(appointment.code, 200);
+    assert.ok(sent.text.includes('Meeting: In person — Costa del Sol'));
+    assert.ok(sent.text.includes(`Preferred date: ${nextYear}-10-05`));
+    assert.ok(sent.html.includes('Preferred time: 14:30'));
+    assert.ok(sent.html.includes('Time zone: Europe/Madrid'));
     global.fetch = async () => ({ ok: false, json: async () => ({ error: 'rejected' }) });
     assert.equal((await invoke()).code, 502);
     global.fetch = async () => { throw new Error('timeout'); };

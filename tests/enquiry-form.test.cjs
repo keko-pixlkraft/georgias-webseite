@@ -53,3 +53,39 @@ test('rate limits and non-JSON errors never become success; invalid forms never 
   await unaccepted.submit();
   assert.equal(unaccepted.status.dataset.state, 'error');
 });
+
+test('appointment steps preserve choices, validate the date and build a clear summary', () => {
+  const elements = {};
+  for (const id of ['enquiry-title', 'continue-enquiry', 'session-step', 'details-step', 'flexible', 'preferredDate', 'preferredTime', 'preferred-fields', 'timing-note', 'progress-details', 'progress-session', 'name', 'service', 'enquiry-summary-text', 'edit-enquiry']) {
+    elements[`#${id}`] = { value: '', disabled: false, hidden: false, listeners: {}, attributes: {}, valid: true,
+      addEventListener(event, fn) { this.listeners[event] = fn; }, setAttribute(k, v) { this.attributes[k] = v; }, removeAttribute(k) { delete this.attributes[k]; }, focus() {}, checkValidity() { return this.valid; }, reportValidity() { this.reported = true; } };
+  }
+  elements['#flexible'].checked = true;
+  elements['#service'].value = 'Energy Healing — 60 minutes — €333';
+  elements['input[name="format"]:checked'] = { value: 'Online' };
+  const flow = initialise.appointmentPreferences({ querySelector: selector => elements[selector] });
+  assert.equal(elements['#preferred-fields'].hidden, true);
+  assert.equal(flow.values().preferredDate, '');
+  flow.advance();
+  assert.equal(flow.isDetails(), true);
+  assert.equal(elements['#session-step'].disabled, true);
+  assert.equal(elements['#details-step'].disabled, false);
+  assert.match(elements['#enquiry-summary-text'].textContent, /€333\nOnline\nFlexible timing/);
+  elements['#edit-enquiry'].listeners.click();
+  elements['#flexible'].checked = false;
+  elements['#flexible'].listeners.change();
+  assert.equal(elements['#preferredDate'].required, true);
+  elements['#preferredDate'].valid = false;
+  assert.equal(flow.advance(), false);
+  assert.equal(flow.isDetails(), false);
+  assert.equal(elements['#preferredDate'].reported, true);
+  elements['#preferredDate'].valid = true;
+  elements['#preferredDate'].value = `${new Date().getUTCFullYear() + 1}-10-05`;
+  elements['#preferredTime'].value = '14:30';
+  elements['input[name="format"]:checked'].value = 'In person';
+  flow.advance();
+  assert.match(elements['#enquiry-summary-text'].textContent, /In person · Costa del Sol/);
+  assert.match(elements['#enquiry-summary-text'].textContent, /14:30 · Europe\/Madrid/);
+  elements['#service'].listeners.change();
+  assert.equal(flow.isDetails(), false);
+});
