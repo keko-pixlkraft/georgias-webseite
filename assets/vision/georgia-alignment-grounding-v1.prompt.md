@@ -1,0 +1,7 @@
+# Georgia — Alignment grounding portrait
+
+Asset: `georgia-alignment-grounding-v1.webp`, 1024 × 1536. Created with the built-in image-generation tool. Identity references are the approved website portraits `georgia-about-fullbleed-v2.webp` and `georgia-luminous-hero-v5.webp`. Used once in the Alignment focus tile; this is an AI-created editorial scene.
+
+## Final prompt
+
+Use case: identity-preserve. Asset type: portrait photograph for the Alignment tile on Align with Georgia. Input images are identity references only: preserve Georgia's recognisable face, age, long dark brunette hair, natural slim body proportions and skin tone. Create a distinctly new editorial scene: Georgia standing quietly beside a weathered limestone garden balustrade, eyes softly closed in a moment of grounding, one hand lightly over the upper chest and the other resting naturally on the rail. Elegant ivory linen blouse and trousers, subtle fine gold jewellery. Mediterranean olive garden with pale stone, soft distant sea, natural afternoon light; warm cream, sage and muted gold. Photograph with tactile textures and realistic skin, relaxed candid presence, no mystical glow. Vertical 2:3 composition, head fully visible in the upper third with generous space above, centered body, natural hands, lower half visually quiet for centered website text. The pose and surroundings must differ from the references, no sofa, writing table, tarot deck, client, circular sculpture or staged yoga pose. High-end editorial photography, no text, logo, watermark or exaggerated retouching.
