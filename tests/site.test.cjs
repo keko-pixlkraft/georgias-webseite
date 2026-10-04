@@ -28,10 +28,11 @@ test('decorative orbit overlays are removed from markup and styles', () => {
   assert.doesNotMatch(html + css, /celestial-seal|material-orbit|depth-sculpture|celestial-drift|request-backdrop:after/);
 });
 
-test('focus tiles contain only the numbered four labels', () => {
+test('focus tiles preserve the four labels and add concise centred captions', () => {
   const gallery = html.split('<section class="focus-gallery"')[1].split('</section>')[0];
   assert.equal((gallery.match(/class="focus-card reveal"/g) || []).length, 4);
-  assert.doesNotMatch(gallery, /<p\b/);
+  assert.equal((gallery.match(/class="focus-caption"/g) || []).length, 4);
+  for (const caption of gallery.matchAll(/class="focus-caption">([^<]+)</g)) assert.ok(caption[1].length < 55);
   assert.deepEqual([...gallery.matchAll(/<h3>(.*?)<\/h3>/g)].map(m => m[1]), ['Energy', 'Mindset', 'Alignment', 'Intuition']);
 });
 
