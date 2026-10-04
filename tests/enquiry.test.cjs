@@ -19,11 +19,15 @@ test('enquiry delivery safeguards and failure handling (no real emails)', async 
     delete process.env.ENQUIRY_ENABLED;
     assert.equal((await invoke()).code, 503);
     assert.equal(calls, 0);
-    assert.equal((await invoke(valid, { method: 'GET' })).code, 405);
+    assert.deepEqual((await invoke(valid, { method: 'GET' })).body, { available: false });
+    assert.equal((await invoke(valid, { method: 'DELETE' })).code, 405);
     assert.equal((await invoke(valid, { headers: { origin: 'https://other.example' } })).code, 403);
     process.env.ENQUIRY_ENABLED = 'true';
     process.env.RESEND_API_KEY = 'test-only';
     process.env.ENQUIRY_FROM = 'Georgia <sessions@alignwithgeorgia.online>';
+    assert.deepEqual((await invoke(valid, { method: 'GET' })).body, { available: true });
+    assert.equal((await invoke(valid, { headers: { origin: 'https://www.alignwithgeorgia.online', 'content-type': 'text/plain' } })).code, 415);
+    assert.equal((await invoke({ ...valid, message: 'A'.repeat(13000) })).code, 413);
     for (const body of [null, [], '{', { ...valid, email: 'bad\r\nemail@example.com' }, { ...valid, service: 'Fake offer' }, { ...valid, message: '' }, { ...valid, website: 'spam' }, { ...valid, name: 'A'.repeat(121) }]) {
       assert.equal((await invoke(body)).code, 400);
     }
@@ -40,6 +44,9 @@ test('enquiry delivery safeguards and failure handling (no real emails)', async 
     assert.deepEqual(sent.to, ['georgiareid25@gmail.com']);
     assert.equal(sent.reply_to, valid.email);
     assert.equal(sent.from, process.env.ENQUIRY_FROM);
+    await invoke({ ...valid, name: '<img src=x onerror=alert(1)>', message: '<script>bad</script>' });
+    assert.ok(sent.html.includes('&lt;script&gt;bad&lt;/script&gt;'));
+    assert.ok(!sent.html.includes('<img'));
     global.fetch = async () => ({ ok: false, json: async () => ({ error: 'rejected' }) });
     assert.equal((await invoke()).code, 502);
     global.fetch = async () => { throw new Error('timeout'); };
