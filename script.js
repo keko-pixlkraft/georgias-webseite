@@ -2,7 +2,6 @@ const header = document.querySelector('#site-header');
 const form = document.querySelector('#contact-form');
 const service = document.querySelector('#service');
 const selectedSession = document.querySelector('#selected-session');
-const status = document.querySelector('#form-status');
 const updateWhatsApp = () => {
   const text = service.value && service.value !== 'I’m not sure yet' ? `Hello Georgia, I’d like to ask about ${service.value}.` : 'Hello Georgia, I’d like to ask about a private session.';
   document.querySelectorAll('a[href^="https://wa.me/447855030356"]').forEach(link => { link.href = `https://wa.me/447855030356?text=${encodeURIComponent(text)}`; });
@@ -45,22 +44,6 @@ document.querySelectorAll('[data-preset]').forEach((link) => {
       selectedSession.classList.add('is-visible');
     }, 250);
   });
-});
-
-form.addEventListener('submit', (event) => {
-  event.preventDefault();
-  if (!form.checkValidity()) {
-    form.reportValidity();
-    return;
-  }
-
-  const name = document.querySelector('#name').value.trim();
-  const email = document.querySelector('#email').value.trim();
-  const message = document.querySelector('#message').value.trim();
-  const subject = encodeURIComponent(`Private enquiry — ${service.value}`);
-  const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nExperience: ${service.value}\n\nWhat I would like support with:\n${message}`);
-  window.location.href = `mailto:georgiareid25@gmail.com?subject=${subject}&body=${body}`;
-  status.textContent = 'Your email app is opening with your private enquiry.';
 });
 
 if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {

@@ -4,7 +4,7 @@ Private energy healing, mindset strategy, tarot and alignment experiences on the
 
 Live: https://www.alignwithgeorgia.online/
 
-Static HTML/CSS/JavaScript on Vercel. The direct enquiry function is prepared but disabled until the verified sender, server credentials and abuse protection are configured. See ENQUIRY-SETUP.md for the activation checklist.
+Static HTML/CSS/JavaScript on Vercel. Direct enquiries use a server-side Resend function with fixed recipient, validation, idempotent retries and Vercel Firewall rate limiting. See ENQUIRY-SETUP.md for configuration and delivery checks.
 
 ## Local preview
 

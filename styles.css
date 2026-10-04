@@ -253,3 +253,10 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 }
 
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal.is-entering{animation:none}.button,.select-session span,.focus-card,.focus-card img,.service,.service-art img,.journey{transition:none}}
+
+/* Direct enquiry delivery states */
+.enquiry-trap{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.request-form .button:disabled{cursor:wait;opacity:.65;transform:none}
+.form-status:empty{display:none}
+.form-status[data-state="success"]{padding:1rem;border-left:2px solid #765128;background:rgba(255,250,241,.7);color:#3b4937}
+.form-status[data-state="error"]{color:#8b3425}
