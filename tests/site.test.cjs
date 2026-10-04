@@ -48,3 +48,15 @@ test('all specified support inclusions remain on the page', () => {
     assert.ok(html.includes(term), `Missing inclusion: ${term}`);
   }
 });
+
+
+test('preferred times use quarter-hour choices and Instagram has its own portrait', () => {
+  const timeSelect = html.match(/<select id="preferredTime"[\s\S]*?<\/select>/)[0];
+  const times = [...timeSelect.matchAll(/value="(\d{2}:\d{2})"/g)].map(m => m[1]);
+  assert.equal(times.length, 96);
+  assert.equal(new Set(times).size, 96);
+  for (const time of times) assert.match(time, /^(?:[01]\d|2[0-3]):(?:00|15|30|45)$/);
+  const instagram = html.match(/<section class="instagram-section"[\s\S]*?<\/section>/)[0];
+  assert.match(instagram, /georgia-instagram-courtyard-v1\.webp/);
+  assert.equal(html.match(/georgia-instagram-courtyard-v1\.webp/g).length, 1);
+});

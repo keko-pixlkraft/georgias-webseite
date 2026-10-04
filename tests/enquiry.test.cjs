@@ -34,7 +34,7 @@ test('enquiry delivery safeguards and failure handling (no real emails)', async 
     assert.equal(calls, 0);
     let sent;
     const nextYear = new Date().getUTCFullYear() + 1;
-    for (const fields of [{ format: 'Invented' }, { preferredDate: '2000-01-01' }, { preferredDate: `${nextYear}-02-30` }, { preferredDate: ['invalid'] }, { preferredTime: '12:30' }, { preferredDate: `${nextYear}-10-05`, preferredTime: '24:00' }, { preferredDate: 'too-long-date-input' }, { timezone: 'Fake/Timezone' }]) {
+    for (const fields of [{ format: 'Invented' }, { preferredDate: '2000-01-01' }, { preferredDate: `${nextYear}-02-30` }, { preferredDate: ['invalid'] }, { preferredTime: '12:30' }, { preferredDate: `${nextYear}-10-05`, preferredTime: '24:00' }, { preferredDate: `${nextYear}-10-05`, preferredTime: '09:39' }, { preferredDate: `${nextYear}-10-05`, preferredTime: '09:01' }, { preferredDate: 'too-long-date-input' }, { timezone: 'Fake/Timezone' }]) {
       assert.equal((await invoke({ ...valid, ...fields })).code, 400);
     }
     assert.equal(calls, 0);
