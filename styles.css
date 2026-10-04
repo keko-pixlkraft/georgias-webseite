@@ -260,3 +260,33 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 .form-status:empty{display:none}
 .form-status[data-state="success"]{padding:1rem;border-left:2px solid #765128;background:rgba(255,250,241,.7);color:#3b4937}
 .form-status[data-state="error"]{color:#8b3425}
+
+/* A compact two-step private appointment enquiry. */
+.sr-only{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.enquiry-step{display:grid;gap:1.15rem;min-width:0;margin:0;padding:0;border:0}
+.enquiry-step[hidden],.preferred-fields[hidden]{display:none}
+.enquiry-progress{display:grid;grid-template-columns:1fr 1fr;gap:1rem;list-style:none;margin:0;padding:0 0 .3rem;font-size:.85rem;color:#766958}
+.enquiry-progress li{display:flex;align-items:center;gap:.6rem;padding-bottom:.65rem;border-bottom:1px solid #d8cbb7}
+.enquiry-progress li[aria-current="step"]{color:#30251b;border-color:#765128;font-weight:500}
+.enquiry-progress span{color:#765128;font-size:.8rem}
+.request-form .format-options{border:0;padding:0;margin:0;min-width:0}
+.format-options legend{padding:0;margin-bottom:.7rem;color:#504331;font-size:.85rem;font-weight:500}
+.format-choices{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.45rem}
+.request-form .format-choices label{position:relative;display:block;cursor:pointer}
+.request-form .format-choices input{position:absolute;width:1px;height:1px;min-height:0;opacity:0}
+.format-choices span{display:flex;justify-content:center;align-items:center;min-height:3.15rem;padding:.5rem .25rem;border:1px solid #cabb9f;font-size:.875rem;font-weight:400;line-height:1.25;text-align:center;background:rgba(255,250,241,.35);transition:background .2s,border-color .2s}
+.format-choices input:checked+span{border-color:#765128;background:#eaddc5;color:#30251b;box-shadow:inset 0 1px rgba(255,255,255,.8),0 5px 15px #76512812}
+.format-choices input:focus-visible+span{outline:2px solid #765128;outline-offset:3px}
+.request-form .preference-note{margin:.6rem 0 0;color:#655a4c;font-size:.8125rem;line-height:1.65}
+.timing-heading{display:flex;align-items:center;justify-content:space-between;gap:.6rem;color:#504331;font-size:.85rem;font-weight:500}
+.request-form .flexible-choice{display:flex;align-items:center;gap:.45rem;cursor:pointer;font-weight:400;white-space:nowrap}
+.request-form .flexible-choice input{width:1.1rem;min-height:1.1rem;height:1.1rem;margin:0;accent-color:#765128}
+.preferred-fields{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:1rem}
+.preferred-fields input{min-width:0;max-width:100%;color-scheme:light}
+.preferred-fields small{font-size:.8rem;font-weight:400}
+.enquiry-summary{padding:1rem 1.1rem;border-left:2px solid #765128;background:linear-gradient(135deg,#f9f3e8d9,#ead9b94d)}
+.enquiry-summary>span{color:#765128;font-size:.8rem}
+.enquiry-summary p{margin:.45rem 0 .7rem;font-size:.9375rem;line-height:1.6;color:#30251b;white-space:pre-line}
+.enquiry-summary button{padding:.3rem 0;border:0;border-bottom:1px solid #bfa581;background:transparent;color:#765128;font-size:.8125rem;cursor:pointer}
+.request-form #selected-session{display:none}
+@media(max-width:480px){.preferred-fields{gap:.65rem}.format-choices{gap:.35rem}.format-choices span{font-size:.8125rem}.enquiry-progress{gap:.65rem}}

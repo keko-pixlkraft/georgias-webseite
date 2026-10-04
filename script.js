@@ -15,6 +15,7 @@ const chooseSession = (session) => {
   const option = [...service.options].find((item) => item.textContent === session);
   if (!option) return;
   service.value = option.value;
+  service.dispatchEvent(new Event('change'));
   updateWhatsApp();
   selectedSession.textContent = `Selected experience: ${session}`;
   selectedSession.classList.add('is-visible');
@@ -38,7 +39,7 @@ document.querySelectorAll('[data-preset]').forEach((link) => {
     const preset = link.dataset.preset;
     window.setTimeout(() => {
       const option = [...service.options].find((item) => item.textContent === preset);
-      if (option) service.value = option.value;
+      if (option) { service.value = option.value; service.dispatchEvent(new Event('change')); }
       updateWhatsApp();
       selectedSession.textContent = `Selected experience: ${preset}`;
       selectedSession.classList.add('is-visible');

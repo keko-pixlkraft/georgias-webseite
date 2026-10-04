@@ -20,6 +20,12 @@ The server checks the origin, content type, payload size, name/email, offer whit
 
 Production smoke check: submit one clearly labelled test enquiry, verify Resend delivery, Gmail receipt and Reply-To. A request is not a confirmed appointment.
 
-Next UI milestone: preferred date/time, Europe/Madrid time-zone label, online/in-person choice, flexible-date alternative and an enquiry summary. Do not show slots as available until backed by Georgia’s actual calendar.
+## Appointment enquiry
+
+The form now has two steps: session and meeting preferences, then contact details. Clients can choose online, in person on the Costa del Sol, or discuss the format. Timing is flexible by default; a specific preferred date and optional time can be requested. All times are explicitly Europe/Madrid. Step two reviews the session, published price, format and timing before submission. Preferences are included in both HTML and plain-text email. Past/invalid dates and malformed times are rejected server-side. Old browser tabs without preference fields remain compatible.
+
+A test of the previous direct-send release was received successfully, as confirmed by the user on 4 October 2026. This release’s preference fields are covered by mock-provider tests and live UI review; they do not reserve a calendar slot.
+
+Next milestone: calendar-backed availability and confirmations, once Georgia’s calendar, working hours, session locations and rescheduling rules are configured. Do not show slots as available until backed by that real calendar.
 
 Sources: https://vercel.com/docs/functions/runtimes/node-js and https://resend.com/docs/api-reference/emails/send-email

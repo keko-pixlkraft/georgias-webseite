@@ -144,13 +144,27 @@
       <div class="request-intro reveal"><p class="eyebrow"><span></span>Costa del Sol · Online worldwide</p><h2>Let’s arrange your session.</h2><p>Choose a session and tell me a little about what you’d like help with. I’ll reply personally to arrange a time.</p><div class="direct-contact"><a href="https://wa.me/447855030356?text=Hello%20Georgia%2C%20I%27d%20like%20to%20ask%20about%20a%20private%20session." target="_blank" rel="noopener noreferrer"><span>WhatsApp</span><strong>+44 7855 030356</strong><i aria-hidden="true">↗</i></a><a href="mailto:georgiareid25@gmail.com"><span>Email</span><strong>georgiareid25@gmail.com</strong><i aria-hidden="true">↗</i></a></div><p class="contact-note">Online worldwide · In person on the Costa del Sol</p></div>
       <form class="request-form reveal" id="contact-form" novalidate>
         <div class="enquiry-trap" aria-hidden="true"><label>Leave this field empty<input name="website" id="website" tabindex="-1" autocomplete="off"></label></div>
-        <div class="form-heading"><h3>Your enquiry</h3><p>Not sure which session to choose? Select “I’m not sure yet”.</p></div>
-        <p id="selected-session" class="selected-session">No experience selected yet</p>
-        <label><span>Your name</span><input id="name" name="name" autocomplete="name" maxlength="120" required></label>
-        <label><span>Email address</span><input id="email" name="email" type="email" autocomplete="email" maxlength="254" required></label>
+        <div class="form-heading"><h3 id="enquiry-title">Your session</h3><p>A few details, then a personal reply from Georgia.</p></div>
+        <ol class="enquiry-progress" aria-label="Your enquiry, two steps"><li id="progress-session" aria-current="step"><span>01</span> Your session</li><li id="progress-details"><span>02</span> Your details</li></ol>
+        <fieldset id="session-step" class="enquiry-step"><legend class="sr-only">Choose your session and preferred time</legend>
         <label><span>I am interested in</span><select id="service" name="service" required><option value="">Choose an experience</option><option>Energy Healing — 60 minutes — €333</option><option>Energy Healing — 90 minutes — €444</option><option>Mindset Strategy — 60 minutes — €333</option><option>The Alignment Session — 90 minutes — €444</option><option>Manifestation &amp; Self-Concept — 75 minutes — €444</option><option>Intuitive Tarot — 60 minutes — €111</option><option>The Alignment Journey — 4 sessions — €1,333</option><option>The Georgia Edit — 8 sessions — €2,222</option><option>Private 1:1 Mentorship — 12 weeks — €3,333</option><option>I’m not sure yet</option></select></label>
-        <label><span>What would you like help with?</span><textarea id="message" name="message" rows="4" maxlength="3000" required></textarea></label>
-        <p class="form-delivery-note">Your enquiry goes directly to Georgia. She’ll reply personally to arrange a time.</p><button class="button button-dark" type="submit">Send enquiry <span aria-hidden="true">↗</span></button><p id="form-status" class="form-status" aria-live="polite" aria-atomic="true" tabindex="-1"></p>
+          <fieldset class="format-options"><legend>How would you like to meet?</legend><div class="format-choices"><label><input type="radio" name="format" value="Online" checked><span>Online</span></label><label><input type="radio" name="format" value="In person"><span>In person</span></label><label><input type="radio" name="format" value="Let’s discuss"><span>Let’s discuss</span></label></div><p class="preference-note">In person on the Costa del Sol. Online wherever you are.</p></fieldset>
+          <div class="timing-heading"><span>Your preferred time</span><label class="flexible-choice"><input id="flexible" type="checkbox" checked><span>I’m flexible</span></label></div>
+          <div id="preferred-fields" class="preferred-fields" hidden><label><span>Preferred date</span><input id="preferredDate" name="preferredDate" type="date" disabled></label><label><span>Time <small>(optional)</small></span><input id="preferredTime" name="preferredTime" type="time" step="60" disabled></label></div>
+          <p class="preference-note" id="timing-note">Georgia will suggest a time in her reply.</p>
+          <p class="preference-note">Times are in Costa del Sol time (Europe/Madrid). Your preferred time is a request; Georgia will confirm availability personally.</p>
+          <button class="button button-dark" id="continue-enquiry" type="button">Your details <span aria-hidden="true">↗</span></button>
+        </fieldset>
+        <fieldset id="details-step" class="enquiry-step" hidden disabled><legend class="sr-only">Your contact details</legend>
+          <div class="enquiry-summary"><span>Your request</span><p id="enquiry-summary-text"></p><button id="edit-enquiry" type="button">Edit session &amp; time</button></div>
+          <label><span>Your name</span><input id="name" name="name" autocomplete="name" maxlength="120" required></label>
+          <label><span>Email address</span><input id="email" name="email" type="email" autocomplete="email" maxlength="254" required></label>
+          <label><span>What would you like help with?</span><textarea id="message" name="message" rows="3" maxlength="3000" required></textarea></label>
+          <p class="form-delivery-note">Sent privately to Georgia. Your appointment is confirmed once you hear from her.</p>
+          <button class="button button-dark" type="submit">Send enquiry <span aria-hidden="true">↗</span></button>
+        </fieldset>
+        <p id="selected-session" class="selected-session">No experience selected yet</p>
+        <p id="form-status" class="form-status" aria-live="polite" aria-atomic="true" tabindex="-1"></p>
         <noscript>Please use the email or WhatsApp link to contact Georgia.</noscript>
       </form>
       <p class="wellbeing-note">Energy work and intuitive guidance are complementary wellbeing practices, not medical or psychological treatment. SOS calls are coaching support, not an emergency service. Experiences and outcomes are personal; no particular result is guaranteed.</p>
