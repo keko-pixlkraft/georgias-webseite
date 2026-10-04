@@ -106,7 +106,7 @@ function initialiseEnquiryForm(document, transport) {
       requestId = undefined;
       document.querySelector('#service').dispatchEvent(new Event('change'));
       status.dataset.state = 'success';
-      status.textContent = 'Thank you — your enquiry has been sent. Georgia will reply personally to arrange a time. Your session is confirmed once you hear from her.';
+      status.textContent = 'Thank you — your request has been sent. Georgia will reply by email to confirm your appointment, then send a PayPal payment link or bank transfer details.';
     } catch (error) {
       status.dataset.state = 'error';
       status.textContent = error.name === 'TypeError' || error.name === 'TimeoutError' || error.name === 'AbortError'

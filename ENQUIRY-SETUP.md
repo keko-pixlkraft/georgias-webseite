@@ -26,9 +26,10 @@ The form now has two steps: session and meeting preferences, then contact detail
 
 A test of the previous direct-send release was received successfully, as confirmed by the user on 4 October 2026. This release’s preference fields are covered by mock-provider tests and live UI review; they do not reserve a calendar slot.
 
-Next milestone: calendar-backed availability and confirmations, once Georgia’s calendar, working hours, session locations and rescheduling rules are configured. Do not show slots as available until backed by that real calendar.
+## Personal confirmation and payment
+
+Decision agreed with Georgia on 4 October 2026: use personal appointment confirmation by email. No Google Calendar integration, live availability or automatic reservations. After confirming the appointment, Georgia sends a PayPal payment link or bank transfer details herself. The website neither takes payment nor reports a session as paid. Georgia specifies when payment is due in that email; no before/after-session deadline has been agreed for the site.
+
+See BOOKING-WORKFLOW.md for the operational sequence. The API sends the enquiry to Georgia only; the visitor sees an on-page receipt, and Georgia sends the appointment confirmation personally.
 
 Sources: https://vercel.com/docs/functions/runtimes/node-js and https://resend.com/docs/api-reference/emails/send-email
-
-
-Google Calendar was selected for the next integration milestone on 4 October 2026. See BOOKING-CALENDAR-SETUP.md. The Google Calendar connection in ChatGPT is for assisted calendar setup; it does not by itself authorize the production website.

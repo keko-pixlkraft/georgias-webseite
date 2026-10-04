@@ -14,4 +14,6 @@ Serve the project root with a static web server. Open responsive-check.html to i
 
 `node --test tests/*.test.cjs`
 
-Google Calendar was chosen as the next availability provider. The server-only free/busy adapter is prepared and covered by mock tests; live calendar authorisation, business hours and reservation logic are still required. See BOOKING-CALENDAR-SETUP.md.
+## Booking and payment
+
+Clients submit their session, preferred date/time and contact details. Georgia receives the enquiry by email, confirms the appointment personally by email, then sends a PayPal payment link or bank transfer details. There is no calendar connection or website checkout. Payment due dates are agreed by Georgia in her confirmation. See BOOKING-WORKFLOW.md.
