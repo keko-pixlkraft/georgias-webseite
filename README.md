@@ -13,3 +13,5 @@ Serve the project root with a static web server. Open responsive-check.html to i
 ## Checks
 
 `node --test tests/*.test.cjs`
+
+Google Calendar was chosen as the next availability provider. The server-only free/busy adapter is prepared and covered by mock tests; live calendar authorisation, business hours and reservation logic are still required. See BOOKING-CALENDAR-SETUP.md.

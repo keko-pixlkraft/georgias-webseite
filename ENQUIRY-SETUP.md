@@ -22,10 +22,13 @@ Production smoke check: submit one clearly labelled test enquiry, verify Resend 
 
 ## Appointment enquiry
 
-The form now has two steps: session and meeting preferences, then contact details. Clients can choose online, in person on the Costa del Sol, or discuss the format. Timing is flexible by default; a specific preferred date and optional time can be requested. All times are explicitly Europe/Madrid. Step two reviews the session, published price, format and timing before submission. Preferences are included in both HTML and plain-text email. Past/invalid dates and malformed times are rejected server-side. Old browser tabs without preference fields remain compatible.
+The form now has two steps: session and meeting preferences, then contact details. Clients can choose online, in person on the Costa del Sol, or discuss the format. Timing is flexible by default; a specific preferred date and optional time can be requested. All times are explicitly Europe/Madrid and selectable only at :00, :15, :30 and :45. The server also enforces these quarter-hour increments. Step two reviews the session, published price, format and timing before submission. Preferences are included in both HTML and plain-text email. Past/invalid dates and malformed times are rejected server-side. Old browser tabs without preference fields remain compatible.
 
 A test of the previous direct-send release was received successfully, as confirmed by the user on 4 October 2026. This release’s preference fields are covered by mock-provider tests and live UI review; they do not reserve a calendar slot.
 
 Next milestone: calendar-backed availability and confirmations, once Georgia’s calendar, working hours, session locations and rescheduling rules are configured. Do not show slots as available until backed by that real calendar.
 
 Sources: https://vercel.com/docs/functions/runtimes/node-js and https://resend.com/docs/api-reference/emails/send-email
+
+
+Google Calendar was selected for the next integration milestone on 4 October 2026. See BOOKING-CALENDAR-SETUP.md. The Google Calendar connection in ChatGPT is for assisted calendar setup; it does not by itself authorize the production website.
