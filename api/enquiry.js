@@ -1,4 +1,4 @@
-// Prepared for the next rollout. No email is sent until ENQUIRY_ENABLED is true.
+// Delivery is enabled only through server-side Vercel configuration.
 const { randomUUID } = require('node:crypto');
 
 const experiences = new Set([
@@ -15,10 +15,13 @@ const origins = new Set([
 const recipient = 'georgiareid25@gmail.com';
 const clean = (value, limit) => typeof value === 'string' && value.trim().length <= limit ? value.trim() : '';
 
+const escapeHtml = value => value.replace(/[&<>"']/g, character => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[character]));
+
 module.exports = async (req, res) => {
   res.setHeader('Cache-Control', 'no-store');
+  if (req.method === 'GET') return res.status(200).json({ available: process.env.ENQUIRY_ENABLED === 'true' && Boolean(process.env.RESEND_API_KEY && process.env.ENQUIRY_FROM) });
   if (req.method !== 'POST') {
-    res.setHeader('Allow', 'POST');
+    res.setHeader('Allow', 'GET, POST');
     return res.status(405).json({ error: 'Please submit an enquiry using the form.' });
   }
   if (!origins.has(req.headers.origin)) return res.status(403).json({ error: 'This request could not be accepted.' });
@@ -52,6 +55,7 @@ module.exports = async (req, res) => {
       body: JSON.stringify({
         from: process.env.ENQUIRY_FROM, to: [recipient], reply_to: email,
         subject: `Private enquiry — ${service}`,
+        html: `<div style="background:#f7f1e6;padding:32px;color:#211d18;font-family:Arial,sans-serif;line-height:1.6"><p style="color:#765128;letter-spacing:2px;font-size:12px">ALIGN WITH GEORGIA</p><h1 style="font-family:Georgia,serif;font-size:28px;font-weight:normal">A new private enquiry</h1><p><strong>${escapeHtml(name)}</strong><br>${escapeHtml(email)}</p><p style="border-top:1px solid #d8c9ad;padding-top:16px"><strong>${escapeHtml(service)}</strong></p><p style="white-space:pre-wrap">${escapeHtml(message)}</p><p style="font-size:12px;color:#685c4c">Reply to this email to contact the visitor.<br>Reference: ${id}<br>This is an enquiry, not a confirmed appointment.</p></div>`,
         text: `ALIGN WITH GEORGIA\n\nName: ${name}\nEmail: ${email}\nSession: ${service}\n\n${message}\n\nReference: ${id}\nThis is an enquiry, not a confirmed appointment.`
       }),
       signal: AbortSignal.timeout(10000)
