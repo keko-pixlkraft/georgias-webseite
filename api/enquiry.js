@@ -2,11 +2,11 @@
 const { randomUUID } = require('node:crypto');
 
 const experiences = new Set([
-  'Energy Healing — 60 minutes — €333', 'Energy Healing — 90 minutes — €444',
-  'Mindset Strategy — 60 minutes — €333', 'The Alignment Session — 90 minutes — €444',
-  'Manifestation & Self-Concept — 75 minutes — €444', 'Intuitive Tarot — 60 minutes — €111',
-  'The Alignment Journey — 4 sessions — €1,333', 'The Georgia Edit — 8 sessions — €2,222',
-  'Private 1:1 Mentorship — 12 weeks — €3,333', 'I’m not sure yet'
+  'Energy Healing — 60 minutes — €111', 'Energy Healing — 90 minutes — €1,888',
+  'Mindset Strategy — 60 minutes — €222', 'The Alignment Session — 90 minutes — €333',
+  'Manifestation & Self-Concept — 75 minutes — €333', 'Intuitive Tarot — 60 minutes — €111',
+  'The Alignment Journey — 4 sessions — €777', 'The Georgia Edit — 8 sessions — €1,188',
+  'Private 1:1 Mentorship — 12 weeks — €2,222', 'I’m not sure yet'
 ]);
 const origins = new Set([
   'https://www.alignwithgeorgia.online', 'https://alignwithgeorgia.online',
