@@ -49,6 +49,14 @@ test('enquiry delivery safeguards and failure handling (no real emails)', async 
     assert.deepEqual(sent.to, ['georgiareid25@gmail.com']);
     assert.equal(sent.reply_to, valid.email);
     assert.equal(sent.from, process.env.ENQUIRY_FROM);
+    const html = require('node:fs').readFileSync(require('node:path').join(__dirname, '..', 'index.html'), 'utf8');
+    const services = [...html.matchAll(/<option>([^<]*€[^<]*)<\/option>/g)].map(m => m[1].replaceAll('&amp;', '&'));
+    assert.equal(services.length, 9);
+    for (const service of services) {
+      assert.equal((await invoke({ ...valid, service })).code, 200, `Rejected published service: ${service}`);
+      assert.ok(sent.text.includes(service), `Email lost the selected price: ${service}`);
+    }
+    assert.equal((await invoke({ ...valid, service: 'Energy Healing — 60 minutes — €333' })).code, 400);
     await invoke({ ...valid, name: '<img src=x onerror=alert(1)>', message: '<script>bad</script>' });
     assert.ok(sent.html.includes('&lt;script&gt;bad&lt;/script&gt;'));
     assert.ok(!sent.html.includes('<img'));
