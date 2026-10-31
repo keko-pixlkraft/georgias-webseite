@@ -9,15 +9,25 @@ const options = [...html.matchAll(/<option(?: [^>]*)?>(.*?)<\/option>/g)].map(m 
 
 test('all nine bookable choices use the new prices', () => {
   const expected = [
-    'Energy Healing — 60 minutes — €333', 'Energy Healing — 90 minutes — €444',
-    'Mindset Strategy — 60 minutes — €333', 'The Alignment Session — 90 minutes — €444',
-    'Manifestation & Self-Concept — 75 minutes — €444', 'Intuitive Tarot — 60 minutes — €111',
-    'The Alignment Journey — 4 sessions — €1,333', 'The Georgia Edit — 8 sessions — €2,222',
-    'Private 1:1 Mentorship — 12 weeks — €3,333'
+    'Energy Healing — 60 minutes — €111', 'Energy Healing — 90 minutes — €1,888',
+    'Mindset Strategy — 60 minutes — €222', 'The Alignment Session — 90 minutes — €333',
+    'Manifestation & Self-Concept — 75 minutes — €333', 'Intuitive Tarot — 60 minutes — €111',
+    'The Alignment Journey — 4 sessions — €777', 'The Georgia Edit — 8 sessions — €1,188',
+    'Private 1:1 Mentorship — 12 weeks — €2,222'
   ];
   assert.deepEqual(options.filter(s => s.includes('€')), expected);
   assert.doesNotMatch(html, /€(?:330|450|335|490|410|225|1,200|2,400|3,750)\b/);
   assert.doesNotMatch(html, /Intuitive Tarot[^"<\n]*€333/);
+  const articles = [...html.matchAll(/<article\b[\s\S]*?<\/article>/g)].map(m => m[0]);
+  for (const choice of expected) {
+    const name = choice.split(' — ')[0];
+    const article = articles.find(article => decode(article).includes(`data-session="${name} —`));
+    assert.ok(article, `Missing card: ${name}`);
+    const price = choice.split(' — ').at(-1);
+    assert.ok(article.includes(`</span>${price}</p>`) || article.includes(`<strong>${price}</strong>`), `Wrong visible price: ${choice}`);
+  }
+  assert.match(html, /90 minutes · €333/);
+  assert.doesNotMatch(html, /€(?:444|1,333|3,333)\b/);
   for (const m of html.matchAll(/data-(?:session|preset|choice)="([^"]+)"/g)) {
     assert.ok(options.includes(decode(m[1])), `Unmatched selection: ${m[1]}`);
   }
