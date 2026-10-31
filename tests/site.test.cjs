@@ -9,7 +9,7 @@ const options = [...html.matchAll(/<option(?: [^>]*)?>(.*?)<\/option>/g)].map(m 
 
 test('all nine bookable choices use the new prices', () => {
   const expected = [
-    'Energy Healing — 60 minutes — €111', 'Energy Healing — 90 minutes — €1,888',
+    'Energy Healing — 60 minutes — €111', 'Energy Healing — 90 minutes — €188',
     'Mindset Strategy — 60 minutes — €222', 'The Alignment Session — 90 minutes — €333',
     'Manifestation & Self-Concept — 75 minutes — €333', 'Intuitive Tarot — 60 minutes — €111',
     'The Alignment Journey — 4 sessions — €777', 'The Georgia Edit — 8 sessions — €1,188',
