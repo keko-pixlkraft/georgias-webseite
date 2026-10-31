@@ -63,7 +63,7 @@ test('appointment steps preserve choices, validate the date and build a clear su
       addEventListener(event, fn) { this.listeners[event] = fn; }, setAttribute(k, v) { this.attributes[k] = v; }, removeAttribute(k) { delete this.attributes[k]; }, focus() {}, checkValidity() { return this.valid; }, reportValidity() { this.reported = true; } };
   }
   elements['#flexible'].checked = true;
-  elements['#service'].value = 'Energy Healing — 60 minutes — €333';
+  elements['#service'].value = 'Energy Healing — 60 minutes — €111';
   elements['input[name="format"]:checked'] = { value: 'Online' };
   const flow = initialise.appointmentPreferences({ querySelector: selector => elements[selector] });
   assert.equal(elements['#preferred-fields'].hidden, true);
@@ -72,7 +72,7 @@ test('appointment steps preserve choices, validate the date and build a clear su
   assert.equal(flow.isDetails(), true);
   assert.equal(elements['#session-step'].disabled, true);
   assert.equal(elements['#details-step'].disabled, false);
-  assert.match(elements['#enquiry-summary-text'].textContent, /€333\nOnline\nFlexible timing/);
+  assert.match(elements['#enquiry-summary-text'].textContent, /€111\nOnline\nFlexible timing/);
   elements['#edit-enquiry'].listeners.click();
   elements['#flexible'].checked = false;
   elements['#flexible'].listeners.change();
